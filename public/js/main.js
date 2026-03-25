@@ -1,6 +1,3 @@
-// GET Character from ReadyPlayerMe
-// https://models.readyplayer.me/--READYPLAYERME--.glb?morphTargets=ARKit&lod=1&textureFormat=webp
-
 // On Document Loaded - Start Game //
 document.addEventListener("DOMContentLoaded", startGame);
 
@@ -136,13 +133,6 @@ function startGame() {
             plugin.animationStartMode = BABYLON.GLTFLoaderAnimationStartMode.NONE;
         }
     });
-
-    // Glow Layer
-    // var gl = new BABYLON.GlowLayer("glow", scene, {
-    //     mainTextureFixedSize: 256,
-    //     blurKernelSize: 128
-    // });
-    // gl.intensity = 0.7;
 
     // Create Camera
     createCamera();
