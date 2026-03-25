@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Lumi - AI Mental Health Companion</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./resources/images/logo.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Main StyleSheet -->
+    <link rel="stylesheet" href="./css/main.css?id=79">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./css/chat.css?id=79">
+    <!-- Bootstrap 5.0.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Loading DIV -->
+    <div id="loadingDiv">
+        <div class="start-card">
+            <img src="./resources/images/logo.png" alt="Logo" id="startLogo">
+            <div class="start-header">
+                <h1 id="startTitle">Lumi AI</h1>
+                <p id="loadingText" class="font-weight-light">Creating a calm space for you...</p>
+            </div>
+            <span class="loader"></span>
+            <button id="startBtn" class="lumi-btn" onclick="hideLoadingView()" style="visibility: hidden; margin-top: 70px;">Begin Session</button>
+        </div>
+    </div>    
+
+    <!-- Textbox Card -->
+    <div id="client-card-container" style="visibility: hidden;">
+        <button id="micBtn" class="lumi-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+            </svg>
+        </button>
+        <div id="client-card-text">
+            <input type="text" id="speaktest" placeholder="Type or speak to Lumi...">
+        </div>
+        <button class="lumi-btn" id="convertBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px; margin-right: 8px;">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+            <span id="sendBtnText">Send</span>
+        </button>
+
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button id="chatToggleBtn" class="lumi-btn" style="visibility: hidden;">Show Chat Window</button>
+
+    <!-- Top Navigation Branding -->
+    <div id="top-nav-branding" style="visibility: hidden;">
+        <div class="branding-logo-details">
+            <img src="./resources/images/logo.png" alt="Lumi AI Small Logo">
+            <span>Lumi AI</span>
+        </div>
+        <button id="infoBtn" class="lumi-btn">About</button>
+        <button id="musicToggleBtn" class="lumi-btn" title="Background Music On/Off" disabled>
+            <svg viewBox="0 0 24 24" fill="currentColor" id="musicIcon" style="width: 20px; height: 20px;">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </button>
+        <button id="danceBtn" class="lumi-btn" title="Make Lumi Dance" disabled>
+            Dance
+        </button>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <span class="close-info">&times;</span>
+            <div class="modal-body text-center">
+                <div class="profile-img-container mb-4">
+                    <img src="./resources/images/logo.png" alt="Lumi AI Logo" id="creatorProfile">
+                </div>
+                <h2 id="creatorName">Bahasuru Nayanakantha</h2>
+                <p class="creator-role">Creator of Lumi AI</p>
+                
+                <div class="project-description mb-4">
+                    <p>Lumi AI is your premium, calm space for conversation. Powered by advanced AI and immersive 3D technology, Lumi is designed to provide a soothing and intelligent interaction experience.</p>
+                </div>
+                
+                <div class="social-links d-flex justify-content-center gap-3">
+                    <a href="https://github.com/" target="_blank" class="social-link" title="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" class="social-link" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="mailto:example@email.com" class="social-link" title="Email">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099l3.83-3.104 5.612 8.817h-18.779l5.513-8.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Sidebar -->
+    <div id="chat-sidebar">
+        <div class="chat-header">
+            <img src="./resources/images/logo.png" alt="Lumi Logo" class="chat-logo">
+            <span>Chat History</span>
+        </div>
+        <div id="chat-messages"></div>
+    </div>
+
+    <!-- BabylonJS Render Canvas -->
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- JS Libraries -->
+    <script src="./node_modules/babylonjs/babylon.js"></script>
+    <script src="./node_modules/babylonjs-loaders/babylonjs.loaders.min.js"></script>
+    <script src="./node_modules/pepjs/dist/pep.js"></script>
+    <!-- JS Main App -->
+    <script src="./js/main.js?id=79"></script>
+    <script src="./js/ui.js"></script>
+</body>
+
+</html>
