@@ -1,8 +1,7 @@
 # Lumi - AI Mental Health Companion 
+<img width="1917" height="865" alt="image" src="https://github.com/user-attachments/assets/e101e965-ccff-4f10-8b2c-a2ccdc0c5cca" />
 
 Lumi is a compassionate, immersive 3D AI companion designed to provide a safe space for emotional support, mindfulness, and gentle conversation. Combining state-of-the-art AI with interactive 3D avatars, Lumi offers a unique and calming interaction experience.
-
-![Lumi AI Banner](./public/resources/images/logo.png)
 
 ## 🌟 Features
 
