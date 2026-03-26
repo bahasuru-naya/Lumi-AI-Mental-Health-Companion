@@ -83,7 +83,7 @@ body.chat-open #chatToggleBtn {
 }
 
 #chat-messages:empty::before {
-    content: 'Your chat history is empty. Please type or speak to begin our session.';
+    content: 'Your chat history is empty. Please type or speak to begin the session.';
     position: absolute;
     top: 50%;
     left: 50%;
