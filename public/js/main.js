@@ -80,7 +80,7 @@ function startGame() {
     // Setup Sounds 
     music = new BABYLON.Sound("Music", "./resources/sounds/music.mp3", scene, null, {
         loop: true,
-        volume: 0.3
+        volume: 1.0
     });
 
     speech = new BABYLON.Sound("speech", "./resources/sounds/start.wav", scene, null, {
@@ -95,7 +95,7 @@ function startGame() {
             if (timelineInterval)
                 clearInterval(timelineInterval);
         }, 1000);
-        music.setVolume(0.5, 1);
+        music.setVolume(2, 1);
         scene.onBeforeRenderObservable.runCoroutineAsync(animationBlending(currentAnimation, 0.7, idle1, 0.7, false, 0.02, 0, idle1.duration, 0.8));
 
         // Enable buttons after intro
@@ -547,11 +547,11 @@ function finishDanceSequence() {
         setTimeout(() => {
             dance.stop();
             if (restoreMusicGlob && music) {
-                music.setVolume(0.5, 2.0);
+                music.setVolume(2, 2.0);
             }
         }, 1500);
     } else if (restoreMusicGlob && music) {
-        music.setVolume(0.5, 2.0);
+        music.setVolume(2, 2.0);
     }
 
     setIdleAnimObservers();
@@ -576,7 +576,7 @@ function playDance() {
 
     if (!dance) {
         dance = new BABYLON.Sound("Music", "./resources/sounds/dance.mp3", scene, null, {
-            volume: 0.5
+            volume: 1.5
         });
     }
 
@@ -594,7 +594,7 @@ function playDance() {
         if (dance) {
             dance.setVolume(0);
             if (!dance.isPlaying) dance.play();
-            dance.setVolume(0.5, 1.0); // Fade in over 1 second
+            dance.setVolume(1.5, 1.0); // Fade in over 1 second
         }
 
         removeAnimObservers();
@@ -898,7 +898,7 @@ function starting(mp3url) {
             return;
         }
 
-        music.setVolume(0.5, 1);
+        music.setVolume(2, 1);
         setIdleAnimObservers();
         updateBtnState("Send", ICON_SEND, false);
         setTimeout(() => {
@@ -1073,7 +1073,7 @@ actionbtn.addEventListener("click", async () => {
     }
 
     setTimeout(() => {
-        music.setVolume(0.3, 0.5);
+        music.setVolume(0.5, 0.5);
         starting(mp3url);
         updateBtnState("Talking...", ICON_TALKING, true);
         talking = false;
